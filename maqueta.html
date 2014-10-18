@@ -1,0 +1,46 @@
+<head>
+		<script src="js/jquery-1.8.0.min.js"></script>
+		<script src="js/angular-file-upload-shim.js"></script>
+		<script src="js/angular.1.2.min.js"></script>
+		<script src="js/angular-file-upload.js"></script>
+		<script src="js/angular-route.min.js"></script>
+		<script src="js/angular-resource.min.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+		<script src="js/ui-bootstrap-tpls-0.11.0.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/angular-ui-router.js"></script>
+		<script src="js/jstorage.js"></script>
+		<script src="js/calendar.js"></script>
+		<script src="js/fullcalendar.js"></script>
+		<script src="js/bootstrap-colorpicker-module.js"></script>
+		<script src="js/gcal.js"></script>
+		<script src="js/controller.js"></script>
+		<script src="js/dateformat.js"></script>
+		<link rel="stylesheet" href="css/bootstrap.css"/>
+		<link rel="stylesheet" href="css/fullcalendar.css"/>
+		<link rel="stylesheet" href="css/principal.css" />
+		<link rel="stylesheet" href="css/colorpicker.css" />
+		<!--<link href='http://fonts.googleapis.com/css?family=Economica' rel='stylesheet' type='text/css'>-->
+	</head>
+<body ng-app="principal">
+		<div class="navbar navbar-default navbar-static-top" id="top-bar" class="row">
+			<div class="col-lg-6">
+				
+			</div>
+			<div id="top-menu" ng-controller="topMenuCtrl" class="col-lg-6">
+				<ul>
+					<li ng-class="active('inicio')"><a href="#!/inicio">Inicio</a></li>
+					<li ng-class="active('buscar')"><a href="#!/buscar">Buscar</a></li>
+					<li ng-class="active('proyectos')"><a href="#!/proyectos">Proyectos</a></li>
+					<li ng-class="active('administrador')"><a href="#!/administrador">Admin</a></li>
+					<li ng-class="active('datos')"><a href="#!/datos">Mis Datos</a></li>
+				</ul>
+			</div>
+		</div>
+		<div ng-controller="mensajesCtrl">
+		  <alert ng-repeat="(i,alert) in mensajes" class="cerrar" type="{{alert.tipo}}">{{alert.cuerpo}}</alert>
+		</div>
+	<div class="container" ui-view>
+		
+	</div>
+</body>

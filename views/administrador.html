@@ -1,0 +1,237 @@
+<div class="row">
+	<div class="col-md-12">
+		<h3>Usuarios </h3>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<div class="row">
+			<table class="table table-bordered">
+				<thead>
+					<tr><th>Id</th><th>Username</th><th>Nombres</th><th>Apellidos</th><th>Rol</th><th>Acción</th></tr>
+				</thead>
+				<tbody>
+				<tr ng-repeat="user in Users" class="little">
+					<td>{{user.User.id}}</td><td>{{user.User.username}}</td>
+					<td>{{user.Profile.nombres}}</td><td>{{user.Profile.apellidos}}</td>
+					<td>{{user.User.rol}}</td><td>
+						<a data-target="#guardar_usuario" data-toggle="modal" ng-click="setear_usuario($index)" class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></a>
+						<a ng-really-click="borrar_usuario(user.User.id,$index)" ng-really-message="Estás segur@?" class="btn btn-danger"><span class="glyphicon glyphicon-remove-circle"></span></a>
+					</td>
+				</tr>
+				</tbody>
+				</table>
+				<a data-target="#guardar_usuario" data-toggle="modal" class="btn btn-success add">Crear usuario</a>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<h3>Clientes </h3>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<div class="row">
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr><th>Id</th><th>Nombre</th><th witdh="15%">Última modificación</th><th witdh="15%">Creación</th><th>Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+				<tr ng-repeat="client in Clients" class="little">
+					<td>{{client.Clgroup.id}}</td><td><a href="#!/administrador/cliente/{{client.Clgroup.id}}">{{client.Clgroup.nombre}}</a></td><td witdh="15%">{{client.Clgroup.modified|dateToISO|date:"dd-MM-yyyy hh:mm"}}</td>
+					<td witdh="15%">{{client.Clgroup.created|dateToISO|date:"dd-MM-yyyy hh:mm"}}</td>
+					<td>
+						<a data-target="#guardar_cliente" data-toggle="modal" ng-click="setear_cliente($index)" class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></a>
+						<a ng-really-click="borrar_cliente(client.Clgroup.id,$index)" ng-really-message="Estás segur@?" class="btn btn-danger"><span class="glyphicon glyphicon-remove-circle"></span></a>
+					</td>
+				</tr>
+				</tbody>
+				</table>
+				<a data-target="#guardar_cliente" data-toggle="modal" class="btn btn-success add">Crear cliente</a>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<h3>Programas </h3>
+	</div>
+</div>
+<br>
+<div class="row">
+	<div class="col-md-12 redondo">
+		<div class="row izquierda-header">
+			<div class="col-md-12">
+				<h4>Programas existentes</h4>
+			</div>
+		</div>
+		<div class="row blanco-interior">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+					<th>Nombre</th><th>Descripción</th><th>programa</th><th>clase a clase</th><th>cuadernillo</th><th>creado</th><th>modificado</th><th>Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="prog in Programas" class="little">
+						<td>{{prog.Programa.nombre}}</td><td>{{prog.Programa.descripcion}}</td>
+						<td><a href="../intranet/modelo/app/webroot/files/{{prog.Programa.archivo_programa}}">{{prog.Programa.archivo_programa}}</a></td>
+						<td><a href="../intranet/modelo/app/webroot/files/{{prog.Programa.archivo_clase_clase}}">{{prog.Programa.archivo_clase_clase}}</a></td>
+						<td><a href="../intranet/modelo/app/webroot/files/{{prog.Programa.archivo_cuadernillo}}">{{prog.Programa.archivo_cuadernillo}}</a></td>
+						<td>{{prog.Programa.created|dateToISO|date:"dd-MM-yyyy hh:mm"}}</td>
+						<td>{{prog.Programa.modified|dateToISO|date:"dd-MM-yyyy hh:mm"}}</td>
+						<td>
+							<a data-target="#editar_programa" data-toggle="modal" ng-click="setear_programa($index)" class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></a>
+							<a ng-really-click="borrar_programa(prog.Programa.id,$index)" ng-really-message="Estás segur@?" class="btn btn-danger"><span class="glyphicon glyphicon-remove-circle"></span></a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<a data-target="#guardar_programa" data-toggle="modal" class="btn btn-success fullwidth add">Subir programa</a>
+		</div>
+	</div>
+</div>
+<div class="modal fade" id="guardar_usuario">
+	<div class="modal-dialog">
+	  	<div class="modal-content">
+	    	<div class="modal-body">
+		    	<div class="dialog-header">
+					<h3>Formulario usuario</h3> <button type="button" class="close" ng-click="close()" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="dialog-body">
+					<form>
+							<div class="form-group">
+								<label>Nombre de usuario</label>
+								<input type="text" class="form-control" ng-model="new_user.username" /> </br>
+							</div>
+							<div class="form-group">
+								<label>Contraseña</label>
+								<input type="password" class="form-control" ng-model="new_user.password" /></br>
+							</div>
+							<div class="form-group">
+								<label>Rol</label>
+								<select class="form-control" ng-model="new_user.rol">
+									<option value="0">Administrador</option>
+									<option value="1">Usuario</option>
+								</select>
+								</br>
+							</div>
+					</form>
+				</div>
+				<div class="dialog-footer" align="right">
+					<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">Cerrar</button>
+				    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="guardar_usuario()">Guardar</button>
+				</div>
+	    	</div>
+  		</div>
+	</div>
+</div>
+<div class="modal fade" id="guardar_cliente">
+	<div class="modal-dialog">
+	  	<div class="modal-content">
+	    	<div class="modal-body">
+		    	<div class="dialog-header">
+					<h3>Formulario cliente</h3> <button type="button" class="close" ng-click="close()" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="dialog-body">
+					<form>
+							<div class="form-group">
+								<label>Nombre</label>
+								<input type="text" class="form-control" ng-model="new_client.nombre" /> </br>
+							</div>
+							<div class="form-group">
+								<label>Descripción</label>
+								<textarea cols="100" class="form-control" ng-model="new_client.descripcion" ></textarea></br>
+							</div>
+					</form>
+				</div>
+				<div class="dialog-footer" align="right">
+					<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">Cerrar</button>
+				    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="guardar_cliente()">Guardar</button>
+				</div>
+	    	</div>
+  		</div>
+	</div>
+</div>
+<div class="modal fade" id="guardar_programa">
+	<div class="modal-dialog">
+	  	<div class="modal-content">
+	    	<div class="modal-body">
+		    	<div class="dialog-header">
+					<h3>Agregar programa</h3> <button type="button" class="close" ng-click="close()" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="dialog-body">
+					<form>
+							<div class="form-group">
+								<label>Nombre del programa</label>
+								<input type="text" class="form-control" ng-model="new_programa.nombre" /> </br>
+							</div>
+							<div class="form-group">
+								<label>Descripción</label><br>
+								<textarea cols="80" ng-model="new_programa.descripcion"></textarea> </br>
+							</div>
+							<div class="form-group">
+								<label>Archivo Programa</label>
+								<input type="file" class="form-control" ng-file-select="subir_programa($files,'programa')" /></br>
+							</div>
+							<div class="progress progress-striped">
+							  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{porcent_programa}}" aria-valuemin="0" aria-valuemax="100" style="width: {{porcent_programa}}%;">
+							    {{porcent_programa}}
+							  </div>
+							</div>
+							<div class="form-group">
+								<label>Archivo Clase a Clase</label>
+								<input type="file" class="form-control" ng-file-select="subir_programa($files,'clase_clase')" /></br>
+							</div>
+							<div class="progress progress-striped">
+							  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{porcent_clase_clase}}" aria-valuemin="0" aria-valuemax="100" style="width: {{porcent_clase_clase}}%;">
+							    {{porcent_clase_clase}}
+							  </div>
+							</div>
+							<div class="form-group">
+								<label>Archivo Cuadernillo</label>
+								<input type="file" class="form-control" ng-file-select="subir_programa($files,'cuadernillo')" /></br>
+							</div>
+							<div class="progress progress-striped">
+							  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{porcent_cuadernillo}}" aria-valuemin="0" aria-valuemax="100" style="width: {{porcent_cuadernillo}}%;">
+							    {{porcent_cuadernillo}}
+							  </div>
+							</div>
+					</form>
+				</div>
+				<div class="dialog-footer" align="right">
+					<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">Cerrar</button>
+				    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="guardar_programa()">Guardar</button>
+				</div>
+	    	</div>
+  		</div>
+	</div>
+</div>
+<div class="modal fade" id="editar_programa">
+	<div class="modal-dialog">
+	  	<div class="modal-content">
+	    	<div class="modal-body">
+		    	<div class="dialog-header">
+					<h3>Agregar programa</h3> <button type="button" class="close" ng-click="close()" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="dialog-body">
+					<form>
+							<div class="form-group">
+								<label>Nombre del programa</label>
+								<input type="text" class="form-control" ng-model="new_programa.nombre" /> </br>
+							</div>
+							<div class="form-group">
+								<label>Descripción</label><br>
+								<textarea cols="80" ng-model="new_programa.descripcion"></textarea> </br>
+							</div>
+					</form>
+				</div>
+				<div class="dialog-footer" align="right">
+					<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">Cerrar</button>
+				    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="guardar_programa()">Guardar</button>
+				</div>
+	    	</div>
+  		</div>
+	</div>
+</div>

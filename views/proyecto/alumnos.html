@@ -1,0 +1,144 @@
+<h3>Alumnos</h3>
+<div class="row">
+	<div class="col-md-12">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>
+						Nombres
+					</th>
+					<th>
+						Apellidos
+					</th>
+					<th>
+						Comuna
+					</th>
+					<th>
+						Email
+					</th>
+					<th>
+						Teléfono
+					</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="alumno in proyecto.Meprofile">
+					<td>{{alumno.nombres}}</td>
+					<td>{{alumno.apellidos}}</td>
+					<td>{{alumno.comuna}}</td>
+					<td>{{alumno.email}}</td>
+					<td>{{alumno.telefono}}</td>
+					<td><a class="glyphicon glyphicon-remove btn btn-danger" ng-click="quitar_alumno($index)"></a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12" align="center">
+		<label> Nombres </label> <input type="text" ng-model="objetivo.nombres" class="form-inline"/>
+		<label> Apellidos </label> <input type="text" ng-model="objetivo.apellidos" class="form-inline"/>
+		<a class="btn btn-success" ng-click="encontrar()">Buscar</a>
+	</div>
+</div>
+<br>
+<h3>Empresarios</h3>
+<div class="row">
+	<div class="col-md-12">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>
+						Nombres
+					</th>
+					<th>
+						Apellidos
+					</th>
+					<th>
+						Comuna
+					</th>
+					<th>
+						Email
+					</th>
+					<th>
+						Teléfono
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="encontrado in encontrados" ng-click="agregar_alumno($index)">
+					<td>{{encontrado.Meprofile.nombres}}</td>
+					<td>{{encontrado.Meprofile.apellidos}}</td>
+					<td>{{encontrado.Meprofile.comuna}}</td>
+					<td>{{encontrado.Meprofile.email}}</td>
+					<td>{{encontrado.Meprofile.telefono}}</td>
+				</tr>
+			</tbody>
+		</table>
+		<a class="btn btn-success" data-target="#agregar_alumno" data-toggle="modal">Crear y agregar</a>
+	</div>
+</div>
+
+
+<div class="modal fade" id="agregar_alumno">
+	<div class="modal-dialog">
+		  	<div class="modal-content">
+		    	<div class="modal-body">
+			    	<div class="dialog-header">
+						<h3>Agregar alumno <a class="close" ng-click="close()" data-dismiss="modal" aria-hidden="true">&times;</a></h3> 
+					</div>
+					<br>
+					<div class="dialog-body" style="height:40%">
+							<div class="form-group">
+							    <label class="col-sm-2">Nombres</label>
+							    <div class="col-sm-10">
+							      <input type="text" class="form-control" ng-model="new_alumno.nombres" placeholder="nombres">
+							    </div>
+							</div>
+							<div class="form-group">
+							    <label class="col-sm-2">Apellidos</label>
+							    <div class="col-sm-10">
+							      <input type="text" class="form-control" ng-model="new_alumno.apellidos" placeholder="apellidos">
+							    </div>
+							</div>
+							<div class="form-group">
+							    <label class="col-sm-2">Teléfono</label>
+							    <div class="col-sm-10">
+							      <input type="text" class="form-control" ng-model="new_alumno.telefono" placeholder="telefono">
+							    </div>
+							</div>
+							<div class="form-group">
+							    <label class="col-sm-2">Celular</label>
+							    <div class="col-sm-10">
+							      <input type="text" class="form-control" ng-model="new_alumno.celular" placeholder="celular">
+							    </div>
+							</div>
+							<div class="form-group">
+							    <label class="col-sm-2">Email</label>
+							    <div class="col-sm-10">
+							      <input type="text" class="form-control" ng-model="new_alumno.email" placeholder="email">
+							    </div>
+							</div>
+							<div class="form-group">
+							    <label class="col-sm-2">Dirección</label>
+							    <div class="col-sm-10">
+							      <input type="text" class="form-control" ng-model="new_alumno.direccion" placeholder="direccion">
+							    </div>
+							</div>
+							<div class="form-group">
+							    <label class="col-sm-2">Comuna</label>
+							    <div class="col-sm-10">
+							      <input type="text" class="form-control" ng-model="new_alumno.comuna" placeholder="comuna">
+							    </div>
+							</div>
+					</div>
+					<div class="dialog-footer" align="right">
+						<br>
+						<a class="btn btn-success" ng-click="guardar_alumno()" data-dismiss="modal">Crear y Agregar</a>
+					    <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+					</div>
+		    	</div>
+	  		</div>
+		</div>
+	</div>

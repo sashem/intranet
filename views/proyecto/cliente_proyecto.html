@@ -1,0 +1,43 @@
+<div class="row nuevo-proyectoo-main">
+		<div class="col-lg-8 col-lg-offset-2">
+			<h2>Seleccione el cliente para el proyecto <a>{{proyecto.nombre}}</a></h2>
+			<div class="row">
+				<table class="table table-bordered">
+					<tr><td>Cliente</td><td><a ng-if="sel_cliente" class="btn btn-success">{{sel_cliente.Clgroup.nombre}}</a></td></tr>
+					<tr><td>Contacto</td><td><a ng-if="sel_contacto" class="btn btn-success">{{sel_contacto.nombres}} {{sel_contacto.apellidos}}</a></td></tr>
+					<tr><td>Centro</td><td><a ng-if="sel_centro" class="btn btn-success">{{sel_centro.nombre}}</a></td></tr>
+				</table>
+			</div>
+			<div class="row">
+				<div class="col-lg-4">
+					<h4>Clientes</h4>
+					<input class="form-control" type="text" ng-model="filtro_cliente.$" />
+					<table class="table table-hover">
+						<tr ng-repeat="cliente in clientes | filter:filtro_cliente">
+							<td><a ng-click="setear_cliente($index)">{{cliente.Clgroup.nombre}}</a></td>
+						</tr>
+					</table>
+				</div>
+				<div class="col-lg-4">
+					<h4>Contactos</h4>
+					<input class="form-control" type="text" ng-model="filtro_contacto.$" />
+					<table class="table table-hover">
+						<tr ng-repeat="contacto in sel_cliente.Clprofile | filter:filtro_contacto">
+							<td><a ng-click="setear_contacto(contacto)">{{contacto.nombres}} {{contacto.apellidos}}</a></td>
+						</tr>
+					</table>
+				</div>
+				<div class="col-lg-4">
+					<h4>Centros</h4>
+					<input class="form-control" type="text" ng-model="filtro_centro.$" />
+					<table class="table table-hover">
+						<tr ng-repeat="centro in sel_cliente.Centro | filter:filtro_centro">
+							<td><a ng-click="setear_centro(centro)">{{centro.nombre}}</a></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<a class="btn btn-lg anterior" ui-sref="nuevo_proyecto.nombre">Anterior</a>
+			<a class="btn btn-lg siguiente" ui-sref="nuevo_proyecto.reclutamiento">Siguiente</a>
+		</div>
+</div>

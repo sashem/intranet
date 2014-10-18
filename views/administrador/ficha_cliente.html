@@ -1,0 +1,206 @@
+<div class="row">
+	<div class="col-md-12">
+		<h2 align="center">{{client.Clgroup.nombre}}</h2>
+		<h4 align="center">{{client.Clgroup.descripcion}}</h4>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+			<h3>Contactos</h3>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Nombres</th><th>Apellidos</th>
+						<th>Área de trabajo / cargo</th><th>Email</th><th>Teléfono</th><th>Dirección</th><th>Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr tooltip-html-unsafe="{{contacto.observaciones}}" ng-repeat="contacto in client.Clprofile">
+						<td>{{contacto.nombres}}</td><td>{{contacto.apellidos}}</td>
+						<td>{{contacto.area_trabajo}} / {{contacto.cargo}}</td>
+						<td>{{contacto.email}}</td><td>{{contacto.telefono}}</td><td>{{contacto.direccion}}</td>
+						<td>
+						<a  data-toggle="modal" data-target="#guardar_cliente" ng-click="setear_contacto($index)" class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></a>
+						<a ng-really-click="borrar_contacto(contacto.id,$index)" ng-really-message="Estás segur@?" class="btn btn-danger"><span class="glyphicon glyphicon-remove-circle"></span></a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+				<a data-target="#guardar_cliente" ng-click="new_contact={}" data-toggle="modal" class="btn btn-success add">Crear contacto</a>	
+	</div>
+	<div class="col-md-12">
+			<h3>Centros</h3>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Nombre</th><th>Dirección</th>
+						<th>Contacto</th><th>Teléfono</th><th>Email</th><th>Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr tooltip-html-unsafe="{{centro.observaciones}}" ng-repeat="centro in client.Centro">
+						<td>{{centro.nombre}}</td><td>{{centro.direccion}}</td><td>{{centro.contacto}}</td><td>{{centro.telefono}}</td><td>{{centro.email}}</td>
+						<td>
+						<a data-toggle="modal" data-target="#guardar_centro" ng-click="setear_centro($index)" class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></a>
+						<a ng-really-click="borrar_centro(centro.id,$index)" ng-really-message="Estás segur@?" class="btn btn-danger"><span class="glyphicon glyphicon-remove-circle"></span></a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+				<a data-target="#guardar_centro" data-toggle="modal" class="btn btn-success add">Crear centro</a>	
+	</div>
+	<div class="col-md-12">
+			<h3>Eventos</h3>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Nombre</th><th>Fecha inicio</th><th>Fecha término</th>
+						<th>Resumen</th><th>Creado por</th><th>Acciones</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="evento in client.Evento">
+						<td>{{evento.nombre}}</td><td>{{evento.fecha_inicio|dateToISO|date:"dd-MM-yyyy HH:mm"}}</td>
+						<td>{{evento.fecha_termino|dateToISO|date:"dd-MM-yyyy HH:mm"}}</td>
+						<td>{{evento.resumen}}</td><td>{{evento.creador}}</td>
+						<td>
+						<a data-toggle="modal" data-target="#guardar_evento" ng-click="setear_evento($index)" class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span></a>
+						<a ng-really-click="borrar_evento(evento.id,$index)" ng-really-message="Estás segur@?" class="btn btn-danger"><span class="glyphicon glyphicon-remove-circle"></span></a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+				<a data-target="#guardar_evento" ng-click="vaciar_evento()" data-toggle="modal" class="btn btn-success add">Agregar Evento</a>	
+	</div>
+</div>
+
+<div class="modal fade" id="guardar_cliente">
+	<div class="modal-dialog">
+	  	<div class="modal-content">
+	    	<div class="modal-body">
+		    	<div class="dialog-header">
+					<h3>Formulario contacto</h3> <button type="button" class="close" ng-click="close()" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="dialog-body">
+					<form>
+							<div class="form-group">
+								<label>Nombres</label>
+								<input type="text" class="form-control" ng-model="new_contact.nombres" /> </br>
+							</div>
+							<div class="form-group">
+								<label>Apellidos</label>
+								<input type="text" class="form-control" ng-model="new_contact.apellidos" /> </br>
+							</div>
+							<div class="form-group">
+								<label>Cargo</label>
+								<input type="text" class="form-control" ng-model="new_contact.cargo" /> </br>
+							</div>
+							<div class="form-group">
+								<label>Área de trabajo</label>
+								<input type="text" class="form-control" ng-model="new_contact.area_trabajo" /> </br>
+							</div>
+							<div class="form-group">
+								<label>Email</label>
+								<input type="text" class="form-control" ng-model="new_contact.email" /> </br>
+							</div><br /><div class="form-group">
+								<label>Teléfono</label>
+								<input type="text" class="form-control" ng-model="new_contact.telefono" /> </br>
+							</div>
+							<div class="form-group">
+								<label>Dirección</label>
+								<input type="text" class="form-control" ng-model="new_contact.direccion" /> </br>
+							</div>
+							<div class="form-group">
+								<label>Observaciones</label>
+								<textarea cols="100" class="form-control" ng-model="new_contact.observaciones" ></textarea></br>
+							</div>
+					</form>
+				</div>
+				<div class="dialog-footer" align="right">
+					<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">Cerrar</button>
+				    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="guardar_contacto()">Guardar</button>
+				</div>
+	    	</div>
+  		</div>
+	</div>
+</div>
+<div class="modal fade" id="guardar_centro">
+	<div class="modal-dialog">
+	  	<div class="modal-content">
+	    	<div class="modal-body">
+		    	<div class="dialog-header">
+					<h3>Formulario centro</h3> <button type="button" class="close" ng-click="close()" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="dialog-body">
+					<form>
+							<div class="form-group">
+								<label>Nombre</label>
+								<input type="text" class="form-control" ng-model="new_center.nombre" /> </br>
+							</div>
+							<div class="form-group">
+								<label>Dirección</label>
+								<input type="text" class="form-control" ng-model="new_center.direccion" /> </br>
+							</div>
+							<div class="form-group">
+								<label>Contacto</label>
+								<input type="text" class="form-control" ng-model="new_center.contacto" /> </br>
+							</div>
+							<div class="form-group">
+								<label>Teléfono</label>
+								<input type="text" class="form-control" ng-model="new_center.telefono" /> </br>
+							</div>
+							<div class="form-group">
+								<label>Email</label>
+								<input type="text" class="form-control" ng-model="new_center.email" /> </br>
+							</div>
+							<div class="form-group">
+								<label>Observaciones</label>
+								<textarea cols="100" class="form-control" ng-model="new_center.observaciones" ></textarea></br>
+							</div>
+					</form>
+				</div>
+				<div class="dialog-footer" align="right">
+					<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">Cerrar</button>
+				    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="guardar_centro()">Guardar</button>
+				</div>
+	    	</div>
+  		</div>
+	</div>
+</div>
+<div class="modal fade" id="guardar_evento">
+	<div class="modal-dialog">
+	  	<div class="modal-content">
+	    	<div class="modal-body">
+		    	<div class="dialog-header">
+					<h3>Formulario evento</h3> <button type="button" class="close" ng-click="close()" data-dismiss="modal" aria-hidden="true">&times;</button>
+				</div>
+				<div class="dialog-body">
+					<form>
+							<div class="form-group">
+								<label>Nombre</label>
+								<input type="text" class="form-control" ng-model="new_event.nombre" /> </br>
+							</div>
+							<div class="form-group">
+								<label>Fecha inicio</label>
+								<input type="text" datepicker-popup="dd-MM-yyyy" ng-model="new_event.fecha_inicio" is-open="cdate.customStartDate.open" ng-click = "cdate.customStartDate.open = true"  max-date="maxDate" date-disabled="disabled(date, mode)" ng-required="true" class="form-control input-md" /> </br>
+								<timepicker ng-model="new_event.hora_inicio"  show-meridian="false"></timepicker>								
+							</div>
+							<div class="form-group">
+								<label>Fecha término</label>
+								<input type="text" datepicker-popup="dd-MM-yyyy" ng-model="new_event.fecha_termino" is-open="cdate.customStartDate.open2" ng-click = "cdate.customStartDate.open2 = true"  max-date="maxDate" date-disabled="disabled(date, mode)" ng-required="true" class="form-control input-md" /> </br>
+								<timepicker ng-model="new_event.hora_termino"  show-meridian="false"></timepicker>
+							</div>
+							<div class="form-group">
+								<label>Resumen</label>
+								<textarea cols="100" class="form-control" ng-model="new_event.resumen" ></textarea></br>
+							</div>
+					</form>
+				</div>
+				<div class="dialog-footer" align="right">
+					<button type="button" class="btn btn-default" data-dismiss="modal" ng-click="close()">Cerrar</button>
+				    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="guardar_evento()">Guardar</button>
+				</div>
+	    	</div>
+  		</div>
+	</div>
+</div>

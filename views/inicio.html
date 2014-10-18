@@ -1,0 +1,39 @@
+<div class="row">
+	<div class="col-lg-5">
+		<img src="img/facultad.jpg" height="600"/>
+	</div>
+	<div class="col-lg-5 col-lg-offset-1">
+		
+		<h3 align="center">
+			<img src="img/logo2.png" style="margin-left:-10px;" width="250"/>
+		</h3>
+		<div ng-controller="loginCtrl">
+			<div align="center" ng-hide="login_check()">
+				<p>Bienvenido a la intranet de Construyendo Mis Sueños</p>
+				<a class="btn btn-default" ng-click="logout()">Cerrar Sesión</a>
+			</div>
+			<div align="center" class="form-horizontal" ng-hide="!login_check()">
+				<p>
+				Para entrar debes ingresar tu usuario y contraseña. Si no tienes uno y piensas que deberías tener acceso, debes escribir un correo
+				a contenido@construyendomissuenos.cl
+				</p>
+				<h3 align="center">Formulario de ingreso</h3>
+				<div class="form-group"><br>
+					    <div class="col-sm-8 col-sm-offset-2">
+					      <input type="text" ng-model="User.username" class="form-control" id="inputEmail3" placeholder="Usuario">
+					    </div>
+				</div>
+				<div class="form-group"><br>
+					    <div class="col-sm-8 col-sm-offset-2">
+					      <input type="password" ng-model="User.password" class="form-control" id="inputEmail3" placeholder="Contraseña">
+					    </div>
+				</div>
+				<div class="form-group">
+				   <div class="col-sm-offset-3 col-sm-6">
+				      <button class="btn btn-default" ng-click="login_try()">Entrar</button>
+				   </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

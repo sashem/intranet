@@ -1,0 +1,35 @@
+<div class="row">
+			<div class="col-md-12">
+				<h2 align="center">Asistencia</h2>
+				<h3>Equipo de trabajo </h3>
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Nombre</th><th ng-repeat="actividad in proyecto.Actividad" width="5%"><a title="{{actividad.nombre}}">{{$index+1}}</a></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="miembro in proyecto.Profile">
+							<td>{{miembro.nombres}} {{miembro.apellidos}}</td>
+							<td ng-repeat="actividad in proyecto.Actividad" align="center" ng-class="{checked:check_assist(actividad.Asistenciaeq, miembro.id)}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<h3>Alumnos</h3>
+				<table class="table table-bordered">
+					<thead>
+						<tr><th>Nombre</th><th ng-repeat="actividad in proyecto.Actividad" width="5%">{{$index+1}}</th></tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="alumno in proyecto.Meprofile">
+							<td><a>{{alumno.nombres}} {{alumno.apellidos}}</a></td>
+							<td ng-repeat="actividad in proyecto.Actividad" ng-class="{checked:check_assist_emp(actividad.Asistenciame, alumno.id)}" align="center"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>

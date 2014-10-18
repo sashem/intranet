@@ -1,0 +1,158 @@
+<div class="row">
+	<div class="col-md-12" align="center">
+		<a align="center" class="btn btn-success" ng-hide="!editando" ng-click="guardarlo_todo()">Guardar todo</a>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<h2 align="center">
+			<a ng-hide="editando">{{actividad.Actividad.nombre}}</a>
+			<input class="form-control" type="text" ng-model="actividad.Actividad.nombre" ng-hide="!editando" />
+			<div ng-hide="!editando">Actividad realizada <input type="checkbox" ng-hide="!editando" ng-checked="actividad.Actividad.realizada==1" ng-model="actividad.Actividad.realizada" />
+			</div>
+			
+			<a class="little" ng-really-click="borrar()" ng-really-message="Estás segur@?">Eliminar</a>
+		</h2>
+		<h3>Información <a class="editar" ng-click="editar()">editar</a></h3>
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table table-bordered">
+					<thead>
+					<tr>
+						<th>Fecha</th>
+						<th>Hora de inicio</th>
+						<th>Hora de término</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><a ng-hide="editando">{{actividad.Actividad.fecha|date:"dd-MM-yyyy"}}</a>
+								<input type="text" ng-hide="!editando" datepicker-popup="dd-MM-yyyy" ng-model="actividad.Actividad.fecha" is-open="cdate.customStartDate.open2" ng-click = "cdate.customStartDate.open2 = true"  max-date="maxDate" date-disabled="disabled(date, mode)" ng-required="true" class="form-control input-md" />
+							</td>
+							<td><a ng-hide="editando">{{actividad.Actividad.hora_inicio|date:"HH:mm"}}</a>
+								<timepicker ng-hide="!editando" ng-model="actividad.Actividad.hora_inicio" show-meridian="false"></timepicker>
+								</td>
+							<td><a ng-hide="editando">{{actividad.Actividad.hora_termino|date:"HH:mm"}}</a>
+								<timepicker ng-hide="!editando" ng-model="actividad.Actividad.hora_termino" show-meridian="false"></timepicker>
+								</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<h3>Asistencia y evaluación Equipo <a class="editar" ng-click="editar()">editar</a></h3>
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table table-bordered">
+					<thead>
+						<tr><th>Nombre</th><th width="10%">Evaluación</th><th>Justificación inasistencia</th></tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="miembro in actividad.Profile">
+							<td>{{miembro.nombres}}
+								<a class="glyphicon glyphicon-remove btn btn-danger" ng-hide="!editando" ng-click="quitar_miembro($index)"></a>
+								</td>
+							<td><a ng-hide="editando">{{miembro.Asistenciaeq.evaluacion}}</a>
+								<input class="form-control" type="text" ng-model="miembro.Asistenciaeq.evaluacion" ng-hide="!editando" />
+							</td>
+							<td><a ng-hide="editando">{{miembro.Asistenciaeq.justificacion}}</a>
+								<textarea class="form-control" cols="100" type="text" ng-model="miembro.Asistenciaeq.justificacion" ng-hide="!editando"></textarea>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<a class="btn btn-success" ng-click="agregar_miembros()" ng-hide="!editando" data-toggle="modal" data-target="#agregar_miembros">Agregar miembros</a>
+			</div>
+		</div>
+		<h3>Asistencia y evaluación ME <a class="editar" ng-click="editar()">editar</a></h3>
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table table-bordered">
+					<thead>
+						<tr><th>Nombre</th><th width="10%">Evaluación</th><th>Justificación inasistencia</th></tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="alumno in actividad.Meprofile">
+							<td><a>{{alumno.nombres}} {{alumno.apellidos}}</a>
+							</td>
+							<td><a ng-hide="editando">{{alumno.Asistenciame.evaluacion}}</a>
+								<input class="form-control" type="text" ng-model="alumno.Asistenciame.evaluacion" ng-hide="!editando" />
+							</td>
+							<td><a ng-hide="editando">{{alumno.Asistenciame.justificacion}}</a>
+								<textarea class="form-control" cols="100" type="text" ng-model="alumno.Asistenciame.justificacion" ng-hide="!editando"></textarea>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<h3>Observaciones</h3>
+		<div class="row">
+			<div class="col-md-12">
+				<table class="table table-bordered">
+					<tr ng-repeat="mensaje in actividad.Observacion">
+						<td width="70%">mensaje.cuerpo<a class="editar">Borrar</a></td><td>Sven el 20-08-2014 a las 12:00</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div align="center" style="width:100%">
+					<textarea cols="80"></textarea><br><br>
+					<a class="btn btn-default">Agregar observación</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	<div class="modal fade" id="agregar_miembros">
+	<div class="modal-dialog">
+		  	<div class="modal-content">
+		    	<div class="modal-body">
+			    	<div class="dialog-header">
+						<h3>Editar miembros del equipo</h3> <button type="button" class="close" ng-click="close()" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="dialog-body">
+						<div class="row">
+							<div class="col-md-12">
+								<table class="table table-bordered">
+									<thead>
+										<tr>
+											<th>Nombres</th><th>Apellidos</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr ng-repeat="reclutado in actividad.Profile">
+											<td>{{reclutado.nombres}}</td>
+											<td>{{reclutado.apellidos}}</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<table class="table table-bordered table-hover">
+									<tbody>
+										<tr>
+											<td colspan="4"><input class="form-control" type="text" ng-model="filtro_reclutas.$" /></td>
+										</tr>
+										<tr ng-repeat="perfil in profiles|filter:filtro_reclutas" ng-click="agregar_miembro($index)">
+											<td>{{perfil.Profile.nombres}}</td>
+											<td>{{perfil.Profile.apellidos}}</td>
+											<td>{{perfil.Profile.comuna_santiago}}</td>
+											<td>{{perfil.Profile.fecha_ingreso_cms}}</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="dialog-footer" align="right">
+					    <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+					</div>
+		    	</div>
+	  		</div>
+		</div>
+	</div>

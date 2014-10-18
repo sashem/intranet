@@ -1,0 +1,34 @@
+<div class="row">
+	<div class="col-md-12">
+		<h3>Proyectos </h3>
+		<a class="btn btn-default" href="#!/proyectos/nuevo_proyecto"> Crear proyecto </a>
+	</div>
+</div>
+<br>
+<div class="row">
+	<div class="col-md-3 redondo">
+		<div class="row izquierda-header">
+			<div class="col-md-12">
+				<h4>Proyectos Recientes</h4>
+			</div>
+		</div>
+		<div class="row blanco-interior">
+			<div class="col-md-12" ng-repeat="proyecto in proyectos">
+				<a href="#!/proyectos/{{proyecto.Proyect.id}}">{{proyecto.Proyect.nombre}}</a>
+				<div class="progress progress-striped">
+				  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width:{{progreso(proyecto)}}%;">
+				    {{progreso_texto(proyecto)}}
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-9 redondo ">
+		<h4>Actividades</h4>
+		<div class="row blanco-interior">
+			<div class="col-md-12">
+				<div ui-calendar="uiConfig.calendar" class="span8 calendar" ng-model="actividades"></div>
+			</div>
+		</div>
+	</div>
+</div>

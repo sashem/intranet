@@ -1,0 +1,31 @@
+<div class="row nuevo-proyecto-main">
+		<div class="col-lg-8 col-lg-offset-2">
+			<h2>Agregue el programa del proyecto<a> {{proyecto.nombre}}</a></h2>
+			<div class="form-horizontal">
+				<div class="form-group">
+						<label class="control-label col-sm-4">Fecha de inicio tentativa</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" datepicker-popup="dd-MM-yyyy" ng-model="proyecto.fecha_inicio" is-open="cdate.customStartDate.open" ng-click = "cdate.customStartDate.open = true"  max-date="maxDate" date-disabled="disabled(date, mode)" ng-required="true" class="input-md" />
+						</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12" align="center">
+					<a class="btn" ng-class="semestre('otoño')" ng-click="setear_semestre('otoño')">Otoño</a>
+					<a class="btn" ng-class="semestre('primavera')" ng-click="setear_semestre('primavera')">Primavera</a>
+					<a class="btn" ng-class="semestre('verano')" ng-click="setear_semestre('verano')">Verano</a>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<select class="form-control" ng-model="proyecto.programa_id" ng-options="programa.Programa.id as programa.Programa.nombre for programa in programas">				
+						<option value="">Selecciona el programa</option>
+					</select>
+				</div>
+			</div>
+			<br>
+			<a class="btn btn-lg anterior" ui-sref="nuevo_proyecto.reclutamiento">Anterior</a>
+			<a class="btn btn-success siguiente" ng-click="generar_proyecto()">Generar proyecto</a>
+		</div>
+</div>

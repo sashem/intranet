@@ -1,0 +1,194 @@
+<div ng-controller="datosCtrl">
+<div class="row">
+	<div class="col-md-12">
+		<h3> Mis proyectos</h3>
+		<table class="table table-bordered">
+			<thead>
+				<tr><th>Proyecto</th><th>Fecha inicio</th><th>Fecha término</th><th>Estado</th><th>Evaluación</th></tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="proyecto in proyectos">
+					<td><a href="#!/proyectos/{{proyecto.id}}">{{proyecto.nombre}}</a></td>
+					<td><a>{{proyecto.fecha_inicio|dateToISO|date:"dd-MM-yyyy"}}</a></td>
+					<td><a>{{proyecto.fecha_termino|dateToISO|date:"dd-MM-yyyy"}}</a></td>
+					<td><a></a></td>
+					<td><a></a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<h3>Datos personales
+			<a class="editar" ng-click="editable()" ng-hide="editar">editar</a>
+			<a class="editar" ng-click="save()" ng-hide="!editar">guardar</a>
+			</h3>
+		<table class="table table-bordered">
+			<tr>
+				<td width="20%">Rut</td><td width="30%"><a ng-hide="editar">{{Profile.rut}}</a>
+					<input class="form-control" ng-hide="!editar" ng-model="Profile.rut"/></td>
+				<td width="20%">Celular</td><td width="30%"><a ng-hide="editar">{{Profile.celular}}</a>
+					<input class="form-control" ng-hide="!editar" ng-model="Profile.celular"/></td>
+			</tr>
+			<tr>
+				<td>Nombres</td><td><a ng-hide="editar">{{Profile.nombres}}</a>
+					<input class="form-control" ng-hide="!editar" ng-model="Profile.nombres"/></td>
+				<td>Teléfono</td>
+				<td><a ng-hide="editar">{{Profile.telefonos}}</a>
+					<input class="form-control" ng-hide="!editar" ng-model="Profile.telefonos"/></td>
+			</tr>
+			<tr>
+				<td>Apellidos</td><td><a ng-hide="editar">{{Profile.apellidos}}</a>
+					<input class="form-control" ng-hide="!editar" ng-model="Profile.apellidos"/></td>
+			</tr>
+			<tr>
+				<td>Comuna santiago</td><td><a ng-hide="editar">{{Profile.comuna_santiago}}</a>
+					<input class="form-control" ng-hide="!editar" ng-model="Profile.comuna_santiago"/></td>
+					<td>Dirección</td><td><a ng-hide="editar">{{Profile.direccion}}</a>
+					<input class="form-control" ng-hide="!editar" ng-model="Profile.direccion"/></td>
+			</tr>
+			<tr>
+				<td>E-mail CMS</td><td><a ng-hide="editar">{{Profile.email_cms}}</a>
+					<input class="form-control" ng-hide="!editar" ng-model="Profile.email_cms"/></td>
+					<td>E-mail alternativo</td><td><a ng-hide="editar">{{Profile.email_alternativo}}</a>
+					<input class="form-control" ng-hide="!editar" ng-model="Profile.email_alternativo"/></td>
+			</tr>
+			<tr>
+				<td>Fecha Nacimiento</td><td><a ng-hide="editar">{{Profile.fecha_nacimiento}}</a>
+					<input type="text" ng-hide="!editar" datepicker-popup="dd-MM-yyyy" ng-model="Profile.fecha_nacimiento" is-open="cdate.customStartDate.open" ng-click = "cdate.customStartDate.open = true"  max-date="maxDate" date-disabled="disabled(date, mode)" ng-required="true" class="form-control input-md" />
+				</td>
+			</tr>
+			<tr>
+				<td>Región vivienda familiar</td><td><a ng-hide="editar">{{Profile.region_familiar}}</a>
+					<input class="form-control" ng-hide="!editar" ng-model="Profile.region_familiar"/></td>
+				<td>Dirección en la región</td><td><a ng-hide="editar">{{Profile.direccion2}}</a>
+					<input class="form-control" ng-hide="!editar" ng-model="Profile.direccion2"/></td>
+			</tr>
+			<tr>
+				<td>Disponibilidad</td><td><a ng-hide="editar">{{Profile.disponibilidad}}</a>
+					<textarea cols="40" ng-hide="!editar" ng-model="Profile.disponibilidad"></textarea>
+				</td><td>Auto</td><td>
+					<div ng-hide="editar"><a class="btn btn-success" ng-if="Profile.auto"> Sí </a><a class="btn btn-danger" ng-if="!Profile.auto"> No </a></div>
+					<div ng-hide="!editar">Sí <input type="radio" ng-model="Profile.auto" ng-value="true"> No <input type="radio" ng-model="Profile.auto" ng-value="false"></div>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<h3> Redes sociales
+		<a class="editar" ng-click="editable()" ng-hide="editar">editar</a>
+		<a class="editar" ng-click="save()" ng-hide="!editar">guardar</a>
+		</h3>
+		<table class="table table-bordered">
+			<tr>
+				<td>Skype</td><td><a ng-hide="editar">{{Profile.skype}}</a>
+					<input class="form-control" ng-hide="!editar" ng-model="Profile.skype"/></td>
+					<td>Blog</td><td><a ng-hide="editar">{{Profile.blog}}</a>
+					<input class="form-control" ng-hide="!editar" ng-model="Profile.blog"/></td>
+			</tr>
+			<tr>
+				<td>Página web</td><td><a ng-hide="editar">{{Profile.web}}</a>
+					<input class="form-control" ng-hide="!editar" ng-model="Profile.web"/></td>
+				<td>Facebook</td><td><a ng-hide="editar">{{Profile.facebook}}</a>
+					<input class="form-control" ng-hide="!editar" ng-model="Profile.facebook"/></td>
+			</tr>
+			<tr>
+				<td>Twitter</td><td><a ng-hide="editar">{{Profile.twitter}}</a>
+					<input class="form-control" ng-hide="!editar" ng-model="Profile.twitter"/></td>
+			</tr>
+		</table>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<h3> Datos Construyendo
+		<a class="editar" ng-click="editable()" ng-hide="editar">editar</a>
+		<a class="editar" ng-click="save()" ng-hide="!editar">guardar</a>
+		</h3>
+		<table class="table table-bordered">
+			<tr>
+				<td>Estado en el equipo</td><td>
+					<div ng-hide="editar"><a class="btn btn-success" ng-if="Profile.activo"> Activo </a><a class="btn btn-danger" ng-if="!Profile.activo"> Inactivo </a></div>
+					<div ng-hide="!editar"> Activo <input type="radio" ng-model="Profile.activo" ng-value="true"/> Inactivo <input type="radio" ng-model="Profile.activo" ng-value="false"/></div>
+				</td><td>Rol</td><td>
+					
+				</td>
+			</tr>
+			<tr>
+				<td>Fecha de ingreso CMS (año)</td><td><a ng-hide="editar">{{Profile.fecha_ingreso_cms}}</a>
+					<input type="text" ng-hide="!editar" datepicker-popup="yyyy" ng-model="Profile.fecha_ingreso_cms" is-open="cdate.customStartDate.open2" ng-click = "cdate.customStartDate.open2 = true"  max-date="maxDate" date-disabled="disabled(date, mode)" ng-required="true" class="form-control input-md" />
+				</td><td>Observaciones</td><td><a ng-hide="editar">{{Profile.observaciones}}</a>
+					<textarea cols="40" ng-hide="!editar" ng-model="Profile.observaciones"></textarea></td>
+			</tr>
+			<tr>
+				<td>Áreas de interés</td><td><a ng-hide="editar">{{Profile.areas_interes}}</a>
+					<textarea cols="40" ng-hide="!editar" ng-model="Profile.areas_interes"></textarea></td>
+			</tr>
+		</table>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<h3> Datos Académicos
+		<a class="editar" ng-click="editable()" ng-hide="editar">editar</a>
+		<a class="editar" ng-click="save()" ng-hide="!editar">guardar</a>
+		</h3>
+		<table class="table table-bordered">
+			<tr>
+				<td>Carrera</td><td><a ng-hide="editar">{{Profile.carrera}}</a>
+					<input class="form-control" ng-hide="!editar" ng-model="Profile.carrera"/></td>
+					<td>Estado de estudios</td><td>
+					<div ng-hide="editar"><a class="btn btn-success" >
+						{{Profile.estado_estudios}}
+					</a></div>
+						<div ng-hide="!editar"> 
+							Estudiando <input type="radio" ng-model="Profile.estado_estudios" value="estudiando"/>
+							Congelado <input type="radio" ng-model="Profile.estado_estudios" value="congelado"/>
+							Egresado <input type="radio" ng-model="Profile.estado_estudios" value="egresado"/>
+							En nada <input type="radio" ng-model="Profile.estado_estudios" value="en nada"/>
+						</div>
+					</td>
+			</tr>
+			<tr>
+				<td>Semestre en curso</td><td><a ng-hide="editar">{{Profile.semestre_curso}}</a>
+					<input class="form-control" ng-hide="!editar" ng-model="Profile.semestre_curso"/></td>
+					<td>Año de egreso</td><td><a ng-hide="editar">{{Profile.ano_egreso}}</a>
+					<input class="form-control" ng-hide="!editar" ng-model="Profile.ano_egreso"/></td>
+			</tr>
+		</table>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<h3> Datos Financieros
+		<a class="editar" ng-click="editable()" ng-hide="editar">editar</a>
+		<a class="editar" ng-click="save()" ng-hide="!editar">guardar</a>
+		</h3>
+		<table class="table table-bordered">
+			<tr>
+				<td>Número de cuenta</td><td><a ng-hide="editar">{{Profile.numero_cuenta}}</a>
+					<input class="form-control" ng-hide="!editar" ng-model="Profile.numero_cuenta"/></td>
+					<td>Tipo de cuenta</td><td><a ng-hide="editar">{{Profile.tipo_cuenta}}</a>
+					<input class="form-control" ng-hide="!editar" ng-model="Profile.tipo_cuenta"/></td>
+			</tr>
+			<tr>
+				<td>Banco</td><td><a ng-hide="editar">{{Profile.banco}}</a>
+					<input class="form-control" ng-hide="!editar" ng-model="Profile.banco"/></td>
+					<td>Iniciación de actividades</td><td>
+					<div ng-hide="editar"><a class="btn btn-success" ng-if="Profile.iniciacion_actividades"> Sí </a><a class="btn btn-danger" ng-if="!Profile.iniciacion_actividades"> No </a></div>
+					<div ng-hide="!editar"> Sí <input type="radio" ng-model="Profile.iniciacion_actividades" ng-value="true"> No <input type="radio" ng-model="Profile.iniciacion_actividades" ng-value="false"></div>
+					</td>
+			</tr>
+			<tr>
+				<td>Pago de UBs</td><td>
+					<div ng-hide="editar"><a class="btn btn-success" ng-if="Profile.pago_ubs"> Sí </a><a class="btn btn-danger" ng-if="!Profile.pago_ubs"> No </a></div>
+					<div ng-hide="!editar"> Sí <input type="radio" ng-model="Profile.pago_ubs" ng-value="true"> No <input type="radio" ng-model="Profile.pago_ubs" ng-value="false"></div>
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>
+</div>

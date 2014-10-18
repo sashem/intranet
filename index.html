@@ -1,0 +1,36 @@
+<head>
+		<script src="js/jquery-1.8.0.min.js"></script>
+		<script src="js/angular.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/controller.js"></script>
+		<link rel="stylesheet" href="css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="css/principal.css" />
+	</head>
+<body ng-app>
+	<div class="container col-lg-6 col-lg-offset-3">
+		<div class="col-lg-12">
+			<h1>Ejemplo basico 1</h1>
+			<input ng-model="objeto" type="text"/>
+			<p></p>
+			<div class="panel panel-default"><p>{{objeto}}</p></div>
+		</div>
+		<div class="col-lg-12" ng-controller="todoCtrl">
+			<h1>Ejemplo basico 2</h1>
+			<ul class="list-group">
+				<li class="list-group-item" ng-repeat="todo in todo_list track by $index">
+						<input type="checkbox" ng-model="todo.ready"/>
+						<a class="todo todo-{{todo.ready}}">{{todo.name}}</a>
+						<a ng-click="quitar($index)"><i class="batch red medium" data-icon="&#xf14e;"></i></a>
+						
+					</p>
+				</li>
+			</ul>
+			<input  type="text" ng-model="new_todo.name" />
+			<a ng-click="agregar()" class="btn btn-success batch" data-icon="&#xf14c;" ></a>
+		</div>
+		<div class="col-lg-12">
+			<h1>Ejemplo basico 3</h1>
+		</div>
+		
+	</div>
+</body>

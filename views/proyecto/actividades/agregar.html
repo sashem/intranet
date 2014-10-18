@@ -1,0 +1,59 @@
+<div class="row">
+	<div class="col-md-12">
+		<h2 align="center">Agregar actividad a {{proyecto.Proyect.nombre}}</h2>
+		<h3>Información básica</h3>
+		<div class="row">
+			<div class="col-lg-8 col-lg-offset-2" align="center">
+				<div class="form-group form-inline">
+				<label class="marginado">Nombre </label>
+				<input type="text" class="form-control" ng-model="new_actividad.nombre" placeholder="Nombre de la actividad">
+				</div>
+				<div class="form-group form-inline">
+				<label class="marginado">Fecha</label>
+				<input type="text" class="form-control" datepicker-popup="dd-MMMM-yyyy" ng-model="new_actividad.fecha"  is-open="cdate.customStartDate.open" ng-click = "cdate.customStartDate.open = true"  max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" class="input-md" />			
+				<br><label class="marginado">Hora inicio</label>
+				<timepicker ng-model="new_actividad.hora_inicio"  show-meridian="false"></timepicker>
+				<label class="marginado">Hora término</label>
+				<timepicker ng-model="new_actividad.hora_termino"  show-meridian="false"></timepicker>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+			<div class="col-md-12">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>Nombres</th><th>Apellidos</th><th>Comuna</th><th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="reclutado in new_actividad.Profile">
+							<td>{{reclutado.nombres}}</td>
+							<td>{{reclutado.apellidos}}</td>
+							<td>{{reclutado.comuna_santiago}}</td>
+							<td><a class="glyphicon glyphicon-remove btn btn-danger" ng-click="quitar_invitado($index)"></a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<table class="table table-bordered table-hover">
+			<tbody>
+				<tr>
+					<td colspan="4"><input class="form-control" type="text" ng-model="filtro_reclutas.$" /></td>
+				</tr>
+				<tr ng-repeat="perfil in perfiles|filter:filtro_reclutas" ng-click="agregar_invitado($index)">
+					<td>{{perfil.Profile.nombres}}</td>
+					<td>{{perfil.Profile.apellidos}}</td>
+					<td>{{perfil.Profile.comuna_santiago}}</td>
+					<td>{{perfil.Profile.fecha_ingreso_cms}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<a class="btn btn-success" ng-click="guardar_actividad()">Guardar actividad</a>

@@ -1,0 +1,218 @@
+@font-face{
+        font-family:'Batch';
+        src:url('../fonts/batch.eot');
+        src:url('../fonts/batch.eot?#iefix') format('embedded-opentype'),
+          url('../fonts/batch.woff') format('woff'),
+          url('../fonts/batch.ttf') format('truetype'),
+          url('../fonts/batch.svg#batchregular') format('svg');
+        font-weight:normal;
+        font-style:normal;
+}
+
+/* ################ Top Bar y Menu ###################################################*/
+.checked:after{
+	content:'\2713';
+}
+.titulo_proyecto{
+	padding-top:10px;
+	width:100%;
+	color:#fff !important;
+	height:50px;
+}
+.titulo_proyecto a{
+	color:#FFFFFF !important;
+}
+th{
+	background-color: #DFF1EE;
+}
+.mas{
+	line-height:30px;
+}
+.anterior{
+	float:left;
+	text-align:left;
+}
+.lista{
+	width:100%;
+	text-align:center;
+	border:thin solid #ccc;
+	height:300px;
+	overflow-y:scroll; 
+}
+.lista table td{
+	height:30px;
+	text-align:left;
+	padding-left:10px;
+}
+.siguiente{
+	float:right;
+	text-align:right;
+}
+.nuevo-proyecto-main{
+	border:thin solid #ccc;
+	border-radius:10px;
+}
+.nuevo-proyecto-main .v-middle{
+	margin-top:150px;
+}
+.etapas{
+	border-radius:10px;
+	border:thin solid #ccc;
+	width:100%;
+	height:40px;
+	line-height:38px;
+	padding: 0px !important;
+	overflow:hidden;
+}
+.etapa.active{
+	background-color:#3e4da2;
+	color:#FFF !important;
+}
+.etapa.active a{
+	color:#FFF !important;
+}
+.etapa a{
+	color:#5E5E5E !important;
+}
+.etapa{
+	margin:0px;
+	padding:0px;
+	text-align:center;
+}
+.fullwidth{
+	width:100%;
+	margin-left:0;
+	margin-right:0;
+}
+.add{
+	width:150px;
+	float:right;
+}
+.little{
+	font-size:10px;
+}
+.redondo{
+	-webkit-border-top-left-radius: 10px;
+	-moz-border-radius-topleft: 10px;
+	border-top-left-radius: 10px;
+	-webkit-border-bottom-right-radius: 10px;
+	-moz-border-radius-bottomright: 10px;
+	border-bottom-right-radius: 10px
+}
+.fondo-azul{
+	background-color:#2A6496;
+	color:#FFF;
+	min-height: 400px;;
+}
+th{
+	text-align:center;
+}
+.little{
+	font-size:14px;
+}
+.marginado{
+	margin-left:20px;
+	margin-right:20px;	
+}
+.fondo-verde{
+	background-color:#b4d700;
+	color:#FFF;
+	min-height: 400px;;
+}
+.izquierda-header{
+	-webkit-border-top-right-radius: 10px;
+	-moz-border-radius-topright: 10px;
+	border-top-right-radius: 10px;
+}
+.editar{
+	font-size:14px;
+	padding-top:8px;
+	float:right;
+	line-height:14px;
+	font-weight: normal;
+	text-decoration:none;
+}
+.blanco-interior{
+	padding-top:20px;
+	min-height:400px;
+	margin-left:0px;
+	margin-right:0px;
+	margin-bottom:10px;
+	background-color:#FFFFFF;
+}
+#top-bar{
+	margin:0;
+}
+#top-menu{
+	height:50	px;
+}
+#top-menu ul{
+	height:50px;
+	margin:0;
+}
+#top-menu li{
+	line-height: 50px;
+	margin-right: 50px;
+	display:inline;
+	font-size:18px;
+	font-family: 'Economica', sans-serif;
+}
+#top-menu li.active{
+	font-weight:bold;
+}
+#top-menu a{
+	color:#808080;
+}
+#top-menu li.active a{
+	color:#000;
+}
+/* ############### Párrafos y títulos ########################################*/
+h3{
+	border-bottom:thin #ccc solid;
+}
+p{
+	text-align:justify;
+}
+
+/* ############### Búsqueda ########################################*/
+.campo{
+	line-height:40px;
+}
+.campo .form-control{
+	width:200px !important;
+	display:inline;
+	margin-right:10px;	
+}
+
+.todo-true{
+	text-decoration:line-through;
+	color:#CCC;
+}
+.todo{
+	margin:20px;
+}
+p{
+	margin:20px;
+}
+.batch {
+        font-family:"Batch"; /*or whatever you've decalred your font name as*/
+        font-size:16px;
+        line-height:1;
+        display:inline-block;
+        font-style:normal;
+}
+.large{
+	font-size:36px;
+}
+.medium{
+	font-size:24px;
+}
+.batch:before {
+        content:attr(data-icon);
+}
+.red{
+	color:#ff0000;
+}
+.green{
+	color:#00ff00;
+}

@@ -1,0 +1,22 @@
+<div class="row">
+			<div class="col-md-12">
+				<h3>Lista de actividades</h3>
+				<table class="table table-bordered">
+					<thead>
+						<tr><th width="40%">Actividad</th><th width="20%">Fecha</th><th width="20%">Hora inicio</th><th width="20%">Hora término</th></tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="actividad in proyecto.Actividad">
+							<td><a href="#!/proyectos/1/actividades/{{actividad.id}}">{{actividad.nombre}}</a></td><td>{{actividad.fecha|date:"dd-MM-yyyy"}}</td><td>{{actividad.hora_inicio|date:"HH:mm"}}</td><td>{{actividad.hora_termino|date:"HH:mm"}}</td>
+						</tr>
+					</tbody>
+				</table>
+				<a class="btn btn-default" href="#!/proyectos/{{proyecto.Proyect.id}}/actividades/agregar">Agregar Actividad</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<h3>Calendario</h3>
+				<div ui-calendar="uiConfig.calendar" class="span8 calendar" ng-model="calendario_actividades"></div>
+			</div>
+		</div>
