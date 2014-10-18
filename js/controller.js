@@ -1,4 +1,4 @@
-SERVER_URL="../intranet/modelo";
+SERVER_URL="./modelo";
 user_URL=SERVER_URL+'/users/';
 client_URL=SERVER_URL+'/clgroups/';
 programa_URL=SERVER_URL+'/programas/';
